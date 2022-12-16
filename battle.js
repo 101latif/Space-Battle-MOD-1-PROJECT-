@@ -37,28 +37,36 @@ let alienShips=
     new fleet("Ship6")
 ]
 let myShip = new Ship("USS HelloWorld", 20, 5, 0.7)
-console.log(myShip,alienShips)
-const attackEnemy = (ship) => {ship.hull -=myShip.firepower;}
-const damageUSS = (myShip) =>{myShip.hull -=alienShips[x].firepower;}
-
-if(myShip.hull<=0)
+for(let x=0; x<alienShips.length; x++)
 {
-    console.log("You Loose!")
-}
-else if(Math.random()< myShip.accuracy)
-{
-    attackEnemy(alienShips[x])
-    console.log("Got you!")
-}
-
-else if(alienShips[x]<=0)
-{
-    console.log(`${alienShips[x].name} is destroyed`)
-}
-else if(Math.random()< alienShips[x].accuracy)
-{
-    damageUSS(myShip)
-    console.log("You have been hit!")   
+    if(myShip.hull<=0)
+    {
+        console.log("You Loose!")       
+    }
+    else
+    {
+        while(alienShips[x].hull>0)
+        {
+            if(Math.random()< myShip.accuracy)
+            {
+            //Attack Enemy
+            alienShips[x].hull -=myShip.firepower
+            console.log(alienShips[x])
+            }
+            if(alienShips[x].hull<=0)
+            {
+                console.log(`${alienShips[x].name} is destroyed`)
+                break;
+            }
+            else if(Math.random()< alienShips[x].accuracy)
+            {
+                //Damage to USS HelloWorld
+                myShip.hull -=alienShips[x].firepower
+                console.log(myShip)
+            }
+        }
+    }
+        
 }
 
 
